@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct UserColumn: View {
+struct UserRow: View {
     let user: UserEntity
     @Binding var navigationPath: [NavigationPath]
     
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: Constants.cornerRadius)
-        VStack {
+        HStack {
             AsyncImage(url: URL(string: user.avatarUrl)) { image in
                 image
                     .resizable()
@@ -23,29 +23,29 @@ struct UserColumn: View {
             } placeholder: {
                 shape.foregroundColor(.secondary)
                     .frame(width: Constants.frameSize, height: Constants.frameSize)
-            }
+            }.padding(.horizontal)
             Text(user.login)
                 .font(.title3)
-        }.padding()
-            .onTapGesture {
-                navigationPath.append(.detail(user: user))
-            }
+            Spacer()
+        }.onTapGesture {
+            navigationPath.append(.detail(user: user))
+        }
     }
     
     private struct Constants {
         static let cornerRadius: Double = 10
-        static let frameSize: Double = 160
+        static let frameSize: Double = 120
     }
 }
 
 #Preview {
     @State var navigationPath = [NavigationPath]()
     return ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-            VStack {
-                UserColumn(user: UserEntity.user, navigationPath: $navigationPath)
-                UserColumn(user: UserEntity.user, navigationPath: $navigationPath)
-            }
-            .padding()
-            .frame(minWidth: 300, alignment: .leading)
+        VStack {
+            UserRow(user: UserEntity.user, navigationPath: $navigationPath)
+            UserRow(user: UserEntity.user, navigationPath: $navigationPath)
         }
+        .padding()
+        .frame(minWidth: 300, alignment: .leading)
+    }
 }

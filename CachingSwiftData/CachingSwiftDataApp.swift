@@ -7,11 +7,30 @@
 
 import SwiftUI
 
+enum NavigationPath: Hashable {
+    case list
+    case detail(user: UserEntity)
+}
+
 @main
 struct CachingSwiftDataApp: App {
+    
+    private let networkService = NetworkService()
+    @State private var navigationPaths = [NavigationPath]()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack(path: $navigationPaths) {
+                ContentView(viewModel: .init(networkService: networkService), navigationPath: $navigationPaths)
+                    .navigationDestination(for: NavigationPath.self) { path in
+                        switch path {
+                        case .list:
+                            ContentView(viewModel: .init(networkService: networkService), navigationPath: $navigationPaths)
+                        case .detail(user:  let user):
+                            DetailView(user: user)
+                        }
+                    }
+            }
         }
     }
 }

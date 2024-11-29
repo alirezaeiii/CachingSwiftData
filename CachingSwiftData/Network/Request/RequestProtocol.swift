@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol RequestProtocol {
+    var httpMethod: HTTPMethod { get }
+    var url: URL? { get }
+    func request() throws -> URLRequest
+}

@@ -8,17 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel: GithubViewModel
+    @Binding var navigationPath: [NavigationPath]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        AsyncContentView(viewState: viewModel.viewState) {
+            List {
+                ForEach(viewModel.users) { user in
+                    UserRow(user: user, navigationPath: $navigationPath)
+                }
+            }.navigationTitle("Following")
+                .navigationBarTitleDisplayMode(.inline)
+        } onRetry: {
+            viewModel.refresh()
         }
-        .padding()
+    }
+    
+    private struct Constants {
+        static let gridItemSize: Double = 180
     }
 }
 
 #Preview {
-    ContentView()
+    let networkService = NetworkService()
+    let viewModel = GithubViewModel(networkService: networkService)
+    @State var navigationPath = [NavigationPath]()
+    return ContentView(viewModel: viewModel, navigationPath: $navigationPath)
 }

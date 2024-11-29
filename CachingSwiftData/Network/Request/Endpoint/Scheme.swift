@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum Scheme: String, CaseIterable {
+    case https
+    case http
+}

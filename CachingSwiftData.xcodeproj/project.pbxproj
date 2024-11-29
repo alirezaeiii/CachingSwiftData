@@ -11,6 +11,22 @@
 		41D0DD2D2CFA182E002793E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD2C2CFA182E002793E8 /* ContentView.swift */; };
 		41D0DD2F2CFA182F002793E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D0DD2E2CFA182F002793E8 /* Assets.xcassets */; };
 		41D0DD322CFA182F002793E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D0DD312CFA182F002793E8 /* Preview Assets.xcassets */; };
+		41D0DD3B2CFA18C9002793E8 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD3A2CFA18C9002793E8 /* UserEntity.swift */; };
+		41D0DD3D2CFA1900002793E8 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD3C2CFA1900002793E8 /* UserDTO.swift */; };
+		41D0DD3F2CFA1997002793E8 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD3E2CFA1997002793E8 /* AsyncContentView.swift */; };
+		41D0DD412CFA19E4002793E8 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD402CFA19E4002793E8 /* DetailView.swift */; };
+		41D0DD442CFA1B12002793E8 /* GithubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD432CFA1B12002793E8 /* GithubViewModel.swift */; };
+		41D0DD462CFA1CBE002793E8 /* ModelContainerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD452CFA1CBE002793E8 /* ModelContainerPreview.swift */; };
+		41D0DD482CFA1D29002793E8 /* PreviewSampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD472CFA1D29002793E8 /* PreviewSampleData.swift */; };
+		41D0DD4B2CFA1DF6002793E8 /* ItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD4A2CFA1DF6002793E8 /* ItemDataSource.swift */; };
+		41D0DD4E2CFA2419002793E8 /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD4D2CFA2419002793E8 /* URLFactory.swift */; };
+		41D0DD502CFA2451002793E8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD4F2CFA2451002793E8 /* NetworkService.swift */; };
+		41D0DD532CFA2487002793E8 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD522CFA2487002793E8 /* RequestProtocol.swift */; };
+		41D0DD552CFA24A6002793E8 /* GithubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD542CFA24A6002793E8 /* GithubRequest.swift */; };
+		41D0DD582CFA24D4002793E8 /* Scheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD572CFA24D4002793E8 /* Scheme.swift */; };
+		41D0DD5A2CFA24ED002793E8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD592CFA24ED002793E8 /* HTTPMethod.swift */; };
+		41D0DD5C2CFA250F002793E8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD5B2CFA250F002793E8 /* Endpoint.swift */; };
+		41D0DD5E2CFA2CA4002793E8 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD5D2CFA2CA4002793E8 /* UserRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +35,22 @@
 		41D0DD2C2CFA182E002793E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		41D0DD2E2CFA182F002793E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41D0DD312CFA182F002793E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		41D0DD3A2CFA18C9002793E8 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		41D0DD3C2CFA1900002793E8 /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		41D0DD3E2CFA1997002793E8 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
+		41D0DD402CFA19E4002793E8 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		41D0DD432CFA1B12002793E8 /* GithubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubViewModel.swift; sourceTree = "<group>"; };
+		41D0DD452CFA1CBE002793E8 /* ModelContainerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainerPreview.swift; sourceTree = "<group>"; };
+		41D0DD472CFA1D29002793E8 /* PreviewSampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSampleData.swift; sourceTree = "<group>"; };
+		41D0DD4A2CFA1DF6002793E8 /* ItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDataSource.swift; sourceTree = "<group>"; };
+		41D0DD4D2CFA2419002793E8 /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
+		41D0DD4F2CFA2451002793E8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		41D0DD522CFA2487002793E8 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		41D0DD542CFA24A6002793E8 /* GithubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRequest.swift; sourceTree = "<group>"; };
+		41D0DD572CFA24D4002793E8 /* Scheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheme.swift; sourceTree = "<group>"; };
+		41D0DD592CFA24ED002793E8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		41D0DD5B2CFA250F002793E8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		41D0DD5D2CFA2CA4002793E8 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +83,11 @@
 		41D0DD292CFA182E002793E8 /* CachingSwiftData */ = {
 			isa = PBXGroup;
 			children = (
+				41D0DD4C2CFA2408002793E8 /* Network */,
+				41D0DD392CFA18B5002793E8 /* Model */,
+				41D0DD382CFA1843002793E8 /* View */,
+				41D0DD4A2CFA1DF6002793E8 /* ItemDataSource.swift */,
 				41D0DD2A2CFA182E002793E8 /* CachingSwiftDataApp.swift */,
-				41D0DD2C2CFA182E002793E8 /* ContentView.swift */,
 				41D0DD2E2CFA182F002793E8 /* Assets.xcassets */,
 				41D0DD302CFA182F002793E8 /* Preview Content */,
 			);
@@ -63,8 +98,69 @@
 			isa = PBXGroup;
 			children = (
 				41D0DD312CFA182F002793E8 /* Preview Assets.xcassets */,
+				41D0DD452CFA1CBE002793E8 /* ModelContainerPreview.swift */,
+				41D0DD472CFA1D29002793E8 /* PreviewSampleData.swift */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		41D0DD382CFA1843002793E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD422CFA1AF4002793E8 /* View Model */,
+				41D0DD2C2CFA182E002793E8 /* ContentView.swift */,
+				41D0DD3E2CFA1997002793E8 /* AsyncContentView.swift */,
+				41D0DD402CFA19E4002793E8 /* DetailView.swift */,
+				41D0DD5D2CFA2CA4002793E8 /* UserRow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41D0DD392CFA18B5002793E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD3A2CFA18C9002793E8 /* UserEntity.swift */,
+				41D0DD3C2CFA1900002793E8 /* UserDTO.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		41D0DD422CFA1AF4002793E8 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD432CFA1B12002793E8 /* GithubViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		41D0DD4C2CFA2408002793E8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD512CFA2460002793E8 /* Request */,
+				41D0DD4D2CFA2419002793E8 /* URLFactory.swift */,
+				41D0DD4F2CFA2451002793E8 /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		41D0DD512CFA2460002793E8 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD562CFA24BF002793E8 /* Endpoint */,
+				41D0DD522CFA2487002793E8 /* RequestProtocol.swift */,
+				41D0DD542CFA24A6002793E8 /* GithubRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		41D0DD562CFA24BF002793E8 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD572CFA24D4002793E8 /* Scheme.swift */,
+				41D0DD592CFA24ED002793E8 /* HTTPMethod.swift */,
+				41D0DD5B2CFA250F002793E8 /* Endpoint.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +234,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				41D0DD2D2CFA182E002793E8 /* ContentView.swift in Sources */,
+				41D0DD412CFA19E4002793E8 /* DetailView.swift in Sources */,
+				41D0DD442CFA1B12002793E8 /* GithubViewModel.swift in Sources */,
+				41D0DD3B2CFA18C9002793E8 /* UserEntity.swift in Sources */,
+				41D0DD462CFA1CBE002793E8 /* ModelContainerPreview.swift in Sources */,
+				41D0DD3D2CFA1900002793E8 /* UserDTO.swift in Sources */,
 				41D0DD2B2CFA182E002793E8 /* CachingSwiftDataApp.swift in Sources */,
+				41D0DD3F2CFA1997002793E8 /* AsyncContentView.swift in Sources */,
+				41D0DD482CFA1D29002793E8 /* PreviewSampleData.swift in Sources */,
+				41D0DD582CFA24D4002793E8 /* Scheme.swift in Sources */,
+				41D0DD4E2CFA2419002793E8 /* URLFactory.swift in Sources */,
+				41D0DD552CFA24A6002793E8 /* GithubRequest.swift in Sources */,
+				41D0DD5A2CFA24ED002793E8 /* HTTPMethod.swift in Sources */,
+				41D0DD502CFA2451002793E8 /* NetworkService.swift in Sources */,
+				41D0DD5E2CFA2CA4002793E8 /* UserRow.swift in Sources */,
+				41D0DD532CFA2487002793E8 /* RequestProtocol.swift in Sources */,
+				41D0DD5C2CFA250F002793E8 /* Endpoint.swift in Sources */,
+				41D0DD4B2CFA1DF6002793E8 /* ItemDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

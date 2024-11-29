@@ -37,4 +37,12 @@ final class ItemDataSource {
             fatalError(error.localizedDescription)
         }
     }
+    
+    func delete() {
+        do {
+            return try modelContext.delete(model: UserEntity.self)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }
