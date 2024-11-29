@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     
@@ -28,11 +29,4 @@ struct ContentView: View {
     private struct Constants {
         static let gridItemSize: Double = 180
     }
-}
-
-#Preview {
-    let networkService = NetworkService()
-    let viewModel = GithubViewModel(networkService: networkService)
-    @State var navigationPath = [NavigationPath]()
-    return ContentView(viewModel: viewModel, navigationPath: $navigationPath)
 }

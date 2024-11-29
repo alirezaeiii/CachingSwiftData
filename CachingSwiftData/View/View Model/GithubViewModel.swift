@@ -14,27 +14,27 @@ class GithubViewModel: ObservableObject {
     @Published var viewState: ViewState = .loading
     @Published var users: [UserEntity] = []
     
-    init(networkService: NetworkService, dataSource: ItemDataSource = ItemDataSource.shared) {
-        self.dataSource = dataSource
+    init(networkService: NetworkService, dataSource: ItemDataSource) {
         self.networkService = networkService
+        self.dataSource = dataSource
         refresh()
     }
     
     func refresh() {
         self.viewState = .loading
-        let userEntities = dataSource.fetch()
         Task { @MainActor in
+            let userEntities = await dataSource.fetch()
             if(userEntities.isEmpty) {
                 do {
-                    try await fetch()
+                    try await update()
                 } catch {
                     self.viewState = .failure(error: error)
                 }
             } else {
-                self.users = dataSource.fetch()
+                self.users = await dataSource.fetch()
                 self.viewState = .completed
                 do {
-                    try await fetch()
+                    try await update()
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -43,15 +43,15 @@ class GithubViewModel: ObservableObject {
     }
     
     @MainActor
-    private func fetch() async throws {
+    private func update() async throws {
         let followingRequest = GithubRequest(path: .following)
         let users: [UserDTO] = try await networkService.perform(request: followingRequest)
-        dataSource.delete()
+        await dataSource.delete()
         for user in users {
             let userEntity = UserEntity(from: user)
-            dataSource.append(user: userEntity)
+            await dataSource.append(user: userEntity)
         }
-        self.users = dataSource.fetch()
+        self.users = await dataSource.fetch()
         self.viewState = .completed
     }
 }
