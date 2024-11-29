@@ -15,9 +15,17 @@ protocol NetworkServiceProtocol {
 final class NetworkService: NetworkServiceProtocol {
     
     private let session: URLSession
- 
+    
+    private static var urlCache: URLCache {
+        let cacheSizeMemory = 0
+        let cacheSizeDisk = 0
+        let cache = URLCache(memoryCapacity: cacheSizeMemory, diskCapacity: cacheSizeDisk, diskPath: "URLCacheDirectory")
+        return cache
+    }
+    
     init(session: URLSession? = nil) {
         let config = URLSessionConfiguration.default
+        config.urlCache = NetworkService.urlCache
         config.requestCachePolicy = .reloadRevalidatingCacheData
         self.session = session ?? URLSession(configuration: config)
     }
