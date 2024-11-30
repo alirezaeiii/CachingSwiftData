@@ -30,3 +30,11 @@ struct ContentView: View {
         static let gridItemSize: Double = 180
     }
 }
+
+#Preview {
+    @State var navigationPath = [NavigationPath]()
+    let networkService = NetworkService()
+    let dataSource = UserDataSource(networkService: networkService)
+    let viewModel = GithubViewModel(dataSource: dataSource)
+    return ContentView(viewModel: viewModel, navigationPath: $navigationPath)
+}

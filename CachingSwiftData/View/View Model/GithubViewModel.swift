@@ -8,22 +8,20 @@
 import Foundation
 
 class GithubViewModel: ObservableObject {
-    private let dataSource: ItemDataSource
-    private let networkService: NetworkService
+    private let dataSource: UserDataSource
     
     @Published var viewState: ViewState = .loading
     @Published var users: [UserEntity] = []
     
-    init(networkService: NetworkService, dataSource: ItemDataSource) {
-        self.networkService = networkService
+    init(dataSource: UserDataSource) {
         self.dataSource = dataSource
         refresh()
     }
     
     func refresh() {
         self.viewState = .loading
+        let userEntities = dataSource.fetch()
         Task { @MainActor in
-            let userEntities = await dataSource.fetch()
             if(userEntities.isEmpty) {
                 do {
                     try await update()
@@ -31,7 +29,7 @@ class GithubViewModel: ObservableObject {
                     self.viewState = .failure(error: error)
                 }
             } else {
-                self.users = await dataSource.fetch()
+                self.users = userEntities
                 self.viewState = .completed
                 do {
                     try await update()
@@ -42,16 +40,9 @@ class GithubViewModel: ObservableObject {
         }
     }
     
-    @MainActor
     private func update() async throws {
-        let followingRequest = GithubRequest(path: .following)
-        let users: [UserDTO] = try await networkService.perform(request: followingRequest)
-        await dataSource.delete()
-        for user in users {
-            let userEntity = UserEntity(from: user)
-            await dataSource.append(user: userEntity)
-        }
-        self.users = await dataSource.fetch()
+        try await dataSource.update()
+        self.users = dataSource.fetch()
         self.viewState = .completed
     }
 }
