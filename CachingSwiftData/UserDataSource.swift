@@ -40,7 +40,6 @@ class UserDataSource {
     private func deleteAll() {
         do {
             try modelContext.delete(model: UserEntity.self)
-            try modelContext.save()
         } catch {
             fatalError(error.localizedDescription)
         }
