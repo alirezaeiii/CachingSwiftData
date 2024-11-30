@@ -15,10 +15,10 @@ class GithubViewModel: ObservableObject {
     
     init(dataSource: UserDataSource) {
         self.dataSource = dataSource
-        refresh()
+        load()
     }
     
-    func refresh() {
+    func load() {
         self.viewState = .loading
         let userEntities = dataSource.fetch()
         Task { @MainActor in
@@ -31,12 +31,16 @@ class GithubViewModel: ObservableObject {
             } else {
                 self.users = userEntities
                 self.viewState = .completed
-                do {
-                    try await update()
-                } catch {
-                    print(error.localizedDescription)
-                }
+                await refresh()
             }
+        }
+    }
+    
+    func refresh() async {
+        do {
+            try await update()
+        } catch {
+            print(error.localizedDescription)
         }
     }
     

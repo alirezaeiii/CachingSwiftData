@@ -21,8 +21,11 @@ struct ContentView: View {
                 }
             }.navigationTitle("Following")
                 .navigationBarTitleDisplayMode(.inline)
+                .refreshable {
+                    await viewModel.refresh()
+                }
         } onRetry: {
-            viewModel.refresh()
+            viewModel.load()
         }
     }
     
