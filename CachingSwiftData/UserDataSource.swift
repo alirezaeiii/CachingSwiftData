@@ -1,5 +1,5 @@
 //
-//  ItemDataSource.swift
+//  UserDataSource.swift
 //  CachingSwiftData
 //
 //  Created by Ali on 11/29/24.
@@ -8,15 +8,17 @@
 import Foundation
 import SwiftData
 
-class UserDataSource {
-    private let modelContainer: ModelContainer
+protocol UserDataSourceProtocol {
+    func fetch() -> [UserEntity]
+    func update() async throws -> [UserEntity]
+}
+
+class UserDataSource: UserDataSourceProtocol {
     private let modelContext: ModelContext
     private let networkService: NetworkService
     
-    @MainActor
-    init(networkService: NetworkService) {
-        self.modelContainer = try! ModelContainer(for: UserEntity.self)
-        self.modelContext = modelContainer.mainContext
+    init(networkService: NetworkService, modelContext: ModelContext) {
+        self.modelContext = modelContext
         self.networkService = networkService
     }
     
@@ -24,34 +26,29 @@ class UserDataSource {
         do {
             return try modelContext.fetch(FetchDescriptor<UserEntity>())
         } catch {
-            fatalError(error.localizedDescription)
+            print(error.localizedDescription)
+            return []
         }
     }
     
-    private func append(user: UserEntity) {
+    private func append(user: UserEntity) throws {
         modelContext.insert(user)
-        do {
-            try modelContext.save()
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+        try modelContext.save()
+        
     }
     
-    private func deleteAll() {
-        do {
-            try modelContext.delete(model: UserEntity.self)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+    private func deleteAll() throws {
+        try modelContext.delete(model: UserEntity.self)
     }
     
-    func update() async throws {
+    func update() async throws -> [UserEntity] {
         let followingRequest = GithubRequest(path: .following)
         let users: [UserDTO] = try await networkService.perform(request: followingRequest)
-        deleteAll()
+        try deleteAll()
         for user in users {
             let userEntity = UserEntity(from: user)
-            append(user: userEntity)
+            try append(user: userEntity)
         }
+        return fetch()
     }
 }

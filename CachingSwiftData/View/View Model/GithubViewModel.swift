@@ -8,12 +8,12 @@
 import Foundation
 
 class GithubViewModel: ObservableObject {
-    private let dataSource: UserDataSource
+    private let dataSource: UserDataSourceProtocol
     
     @Published var viewState: ViewState = .loading
     @Published var users: [UserEntity] = []
     
-    init(dataSource: UserDataSource) {
+    init(dataSource: UserDataSourceProtocol) {
         self.dataSource = dataSource
         load()
     }
@@ -46,8 +46,8 @@ class GithubViewModel: ObservableObject {
     
     @MainActor
     private func update() async throws {
-        try await dataSource.update()
-        self.users = dataSource.fetch()
+        let updatedUsers = try await dataSource.update()
+        self.users = updatedUsers
         self.viewState = .completed
     }
 }
