@@ -120,9 +120,9 @@
 				41D0DD382CFA1843002793E8 /* View */,
 				41D0DD4A2CFA1DF6002793E8 /* UserDataSource.swift */,
 				41D0DD2A2CFA182E002793E8 /* CachingSwiftDataApp.swift */,
+				41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */,
 				41D0DD2E2CFA182F002793E8 /* Assets.xcassets */,
 				41D0DD302CFA182F002793E8 /* Preview Content */,
-				41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */,
 			);
 			path = CachingSwiftData;
 			sourceTree = "<group>";
