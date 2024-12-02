@@ -28,7 +28,7 @@ struct AsyncContentView<Content: View>: View {
     
     var viewState: ViewState
     let content: () -> Content
-    let onRetry: () -> Void
+    let onRetry: () async -> Void
     
     var body: some View {
         switch viewState {
@@ -40,7 +40,9 @@ struct AsyncContentView<Content: View>: View {
             VStack(spacing: 20) {
                 Text(error.localizedDescription)
                 Button(action: {
-                    onRetry()
+                    Task {
+                        await onRetry()
+                    }
                 }, label: {
                     Text("Retry")
                 })

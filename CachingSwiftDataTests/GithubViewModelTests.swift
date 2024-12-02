@@ -6,30 +6,56 @@
 //
 
 import XCTest
+@testable import CachingSwiftData
 
 final class GithubViewModelTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var viewModel: GithubViewModel!
+    var mockDataSource: MockUserDataSource!
+    
+    override func setUp() {
+        super.setUp()
+        mockDataSource = MockUserDataSource()
+        viewModel = GithubViewModel(dataSource: mockDataSource)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        mockDataSource = nil
+        viewModel = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    // Test: ViewModel should transition to .completed when data is already available
+    func testLoadWithExistingData() async {
+        // Arrange: Add mock users to the data source
+        mockDataSource.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
+        
+        XCTAssertEqual(viewModel.viewState, .loading)
+        await viewModel.load()
+        
+        XCTAssertEqual(viewModel.viewState, .completed)
+        XCTAssertEqual(viewModel.users.count, 1)
+        XCTAssertEqual(viewModel.users.first?.login, "testUser")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testLoadWithNetworkFailure() async {
+        mockDataSource.shouldThrowError = true
+        
+        XCTAssertEqual(viewModel.viewState, .loading)
+        await viewModel.load()
+        
+        // Assert: Verify that view state is failure
+        XCTAssertEqual(viewModel.viewState, .failure(error: NSError(domain: "MockError", code: 1, userInfo: nil)))
     }
-
+    
+    func testRefresh() async {
+        mockDataSource.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
+        
+        XCTAssertEqual(viewModel.viewState, .loading)
+        await viewModel.refresh()
+        
+        XCTAssertEqual(viewModel.viewState, .completed)
+        XCTAssertEqual(viewModel.users.count, 1)
+        XCTAssertEqual(viewModel.users.first?.login, "testUser")
+    }
 }

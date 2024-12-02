@@ -25,7 +25,9 @@ struct ContentView: View {
                     await viewModel.refresh()
                 }
         } onRetry: {
-            viewModel.load()
+            await viewModel.load()
+        }.task {
+            await viewModel.load()
         }
     }
     

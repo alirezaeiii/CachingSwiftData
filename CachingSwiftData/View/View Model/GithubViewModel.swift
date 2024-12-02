@@ -15,24 +15,22 @@ class GithubViewModel: ObservableObject {
     
     init(dataSource: UserDataSourceProtocol) {
         self.dataSource = dataSource
-        load()
     }
     
-    func load() {
+    @MainActor
+    func load() async {
         self.viewState = .loading
         let userEntities = dataSource.fetch()
-        Task { @MainActor in
-            if(userEntities.isEmpty) {
-                do {
-                    try await update()
-                } catch {
-                    self.viewState = .failure(error: error)
-                }
-            } else {
-                self.users = userEntities
-                self.viewState = .completed
-                await refresh()
+        if(userEntities.isEmpty) {
+            do {
+                try await update()
+            } catch {
+                self.viewState = .failure(error: error)
             }
+        } else {
+            self.users = userEntities
+            self.viewState = .completed
+            await refresh()
         }
     }
     
