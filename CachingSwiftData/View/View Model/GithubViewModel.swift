@@ -46,8 +46,8 @@ class GithubViewModel: ObservableObject {
     
     @MainActor
     private func update() async throws {
-        let updatedUsers = try await dataSource.update()
-        self.users = updatedUsers
+        try await dataSource.update()
+        self.users = dataSource.fetch()
         self.viewState = .completed
     }
 }

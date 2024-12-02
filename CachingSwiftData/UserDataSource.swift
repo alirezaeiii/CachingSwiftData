@@ -9,15 +9,16 @@ import Foundation
 import SwiftData
 
 protocol UserDataSourceProtocol {
+    func append(user: UserEntity) throws
     func fetch() -> [UserEntity]
-    func update() async throws -> [UserEntity]
+    func update() async throws
 }
 
 class UserDataSource: UserDataSourceProtocol {
-    private let modelContext: ModelContext
-    private let networkService: NetworkService
+    private let modelContext: ModelContextProtocol
+    private let networkService: NetworkServiceProtocol
     
-    init(networkService: NetworkService, modelContext: ModelContext) {
+    init(networkService: NetworkServiceProtocol, modelContext: ModelContextProtocol) {
         self.modelContext = modelContext
         self.networkService = networkService
     }
@@ -31,17 +32,16 @@ class UserDataSource: UserDataSourceProtocol {
         }
     }
     
-    private func append(user: UserEntity) throws {
+    func append(user: UserEntity) throws {
         modelContext.insert(user)
         try modelContext.save()
-        
     }
     
-    private func deleteAll() throws {
-        try modelContext.delete(model: UserEntity.self)
+    func deleteAll() throws {
+        try modelContext.deleteAll(model: UserEntity.self)
     }
     
-    func update() async throws -> [UserEntity] {
+    func update() async throws {
         let followingRequest = GithubRequest(path: .following)
         let users: [UserDTO] = try await networkService.perform(request: followingRequest)
         try deleteAll()
@@ -49,6 +49,5 @@ class UserDataSource: UserDataSourceProtocol {
             let userEntity = UserEntity(from: user)
             try append(user: userEntity)
         }
-        return fetch()
     }
 }
