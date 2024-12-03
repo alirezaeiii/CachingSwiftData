@@ -8,12 +8,12 @@
 import Foundation
 
 class GithubViewModel: ObservableObject {
-    private let dataSource: UserDataSourceProtocol
+    private let dataSource: UserRepository
     
     @Published var viewState: ViewState = .loading
     @Published var users: [UserEntity] = []
     
-    init(dataSource: UserDataSourceProtocol) {
+    init(dataSource: UserRepository) {
         self.dataSource = dataSource
     }
     

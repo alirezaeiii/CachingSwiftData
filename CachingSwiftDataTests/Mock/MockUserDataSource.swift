@@ -8,7 +8,7 @@
 import Foundation
 @testable import CachingSwiftData
 
-class MockUserDataSource: UserDataSourceProtocol {
+class MockUserRepository: UserRepository {
     var mockUsers: [UserEntity] = []
     var shouldThrowError = false
     

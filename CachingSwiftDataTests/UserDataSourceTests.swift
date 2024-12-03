@@ -11,13 +11,13 @@ import XCTest
 final class UserDataSourceTests: XCTestCase {
     var mockModelContext: MockModelContext!
     var mockNetworkService: MockNetworkService!
-    var userDataSource: UserDataSource!
+    var userDataSource: UserRepositoryImpl!
     
     override func setUp() {
         super.setUp()
         mockModelContext = MockModelContext()
         mockNetworkService = MockNetworkService()
-        userDataSource = UserDataSource(networkService: mockNetworkService, modelContext: mockModelContext)
+        userDataSource = UserRepositoryImpl(networkService: mockNetworkService, modelContext: mockModelContext)
     }
     
     override func tearDown() {

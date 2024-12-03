@@ -8,13 +8,13 @@
 import Foundation
 import SwiftData
 
-protocol UserDataSourceProtocol {
+protocol UserRepository {
     func append(user: UserEntity) throws
     func fetch() -> [UserEntity]
     func update() async throws
 }
 
-class UserDataSource: UserDataSourceProtocol {
+class UserRepositoryImpl: UserRepository {
     private let modelContext: ModelContextProtocol
     private let networkService: NetworkServiceProtocol
     

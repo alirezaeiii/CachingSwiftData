@@ -115,12 +115,11 @@
 		41D0DD292CFA182E002793E8 /* CachingSwiftData */ = {
 			isa = PBXGroup;
 			children = (
+				41D0DD792CFF9285002793E8 /* Repository */,
 				41D0DD4C2CFA2408002793E8 /* Network */,
 				41D0DD392CFA18B5002793E8 /* Model */,
 				41D0DD382CFA1843002793E8 /* View */,
-				41D0DD4A2CFA1DF6002793E8 /* UserDataSource.swift */,
 				41D0DD2A2CFA182E002793E8 /* CachingSwiftDataApp.swift */,
-				41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */,
 				41D0DD2E2CFA182F002793E8 /* Assets.xcassets */,
 				41D0DD302CFA182F002793E8 /* Preview Content */,
 			);
@@ -214,6 +213,15 @@
 				41D0DD752CFD4FE3002793E8 /* MockUserDataSource.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		41D0DD792CFF9285002793E8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */,
+				41D0DD4A2CFA1DF6002793E8 /* UserDataSource.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

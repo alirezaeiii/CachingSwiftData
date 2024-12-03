@@ -22,7 +22,7 @@ struct CachingSwiftDataApp: App {
     @State private var viewModel: GithubViewModel
     
     init() {
-        let dataSource = UserDataSource(networkService: networkService, modelContext: modelContainer.mainContext)
+        let dataSource = UserRepositoryImpl(networkService: networkService, modelContext: modelContainer.mainContext)
         viewModel = GithubViewModel(dataSource: dataSource)
     }
     

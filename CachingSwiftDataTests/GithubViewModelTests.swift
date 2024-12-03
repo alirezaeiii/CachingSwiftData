@@ -11,11 +11,11 @@ import XCTest
 final class GithubViewModelTests: XCTestCase {
     
     var viewModel: GithubViewModel!
-    var mockDataSource: MockUserDataSource!
+    var mockDataSource: MockUserRepository!
     
     override func setUp() {
         super.setUp()
-        mockDataSource = MockUserDataSource()
+        mockDataSource = MockUserRepository()
         viewModel = GithubViewModel(dataSource: mockDataSource)
     }
     
