@@ -22,8 +22,8 @@ struct CachingSwiftDataApp: App {
     @State private var viewModel: GithubViewModel
     
     init() {
-        let dataSource = UserRepositoryImpl(networkService: networkService, modelContext: modelContainer.mainContext)
-        viewModel = GithubViewModel(dataSource: dataSource)
+        let repository = UserRepositoryImpl(networkService: networkService, modelContext: modelContainer.mainContext)
+        viewModel = GithubViewModel(repository: repository)
     }
     
     var body: some Scene {

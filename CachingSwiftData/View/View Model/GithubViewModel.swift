@@ -10,19 +10,19 @@ import Foundation
 @Observable
 class GithubViewModel {
     @ObservationIgnored
-    private let dataSource: UserRepository
+    private let repository: UserRepository
     
     var viewState: ViewState = .loading
     var users: [UserEntity] = []
     
-    init(dataSource: UserRepository) {
-        self.dataSource = dataSource
+    init(repository: UserRepository) {
+        self.repository = repository
     }
     
     @MainActor
     func load() async {
         self.viewState = .loading
-        let userEntities = dataSource.fetch()
+        let userEntities = repository.fetch()
         if(userEntities.isEmpty) {
             do {
                 try await update()
@@ -46,8 +46,8 @@ class GithubViewModel {
     
     @MainActor
     private func update() async throws {
-        try await dataSource.update()
-        self.users = dataSource.fetch()
+        try await repository.update()
+        self.users = repository.fetch()
         self.viewState = .completed
     }
 }

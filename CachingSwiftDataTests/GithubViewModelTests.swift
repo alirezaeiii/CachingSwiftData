@@ -11,16 +11,16 @@ import XCTest
 final class GithubViewModelTests: XCTestCase {
     
     var viewModel: GithubViewModel!
-    var mockDataSource: MockUserRepository!
+    var mockUserRepository: MockUserRepository!
     
     override func setUp() {
         super.setUp()
-        mockDataSource = MockUserRepository()
-        viewModel = GithubViewModel(dataSource: mockDataSource)
+        mockUserRepository = MockUserRepository()
+        viewModel = GithubViewModel(repository: mockUserRepository)
     }
     
     override func tearDown() {
-        mockDataSource = nil
+        mockUserRepository = nil
         viewModel = nil
         super.tearDown()
     }
@@ -28,7 +28,7 @@ final class GithubViewModelTests: XCTestCase {
     // Test: ViewModel should transition to .completed when data is already available
     func testLoadWithExistingData() async {
         // Arrange: Add mock users to the data source
-        mockDataSource.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
+        mockUserRepository.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
         
         XCTAssertEqual(viewModel.viewState, .loading)
         await viewModel.load()
@@ -39,7 +39,7 @@ final class GithubViewModelTests: XCTestCase {
     }
     
     func testLoadWithNetworkFailure() async {
-        mockDataSource.shouldThrowError = true
+        mockUserRepository.shouldThrowError = true
         
         XCTAssertEqual(viewModel.viewState, .loading)
         await viewModel.load()
@@ -49,7 +49,7 @@ final class GithubViewModelTests: XCTestCase {
     }
     
     func testRefresh() async {
-        mockDataSource.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
+        mockUserRepository.mockUsers = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
         
         XCTAssertEqual(viewModel.viewState, .loading)
         await viewModel.refresh()

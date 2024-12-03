@@ -43,7 +43,7 @@ struct ContentView: View {
     let networkService = NetworkService()
     let modelContainer = try! ModelContainer(for: UserEntity.self)
     let modelContext = modelContainer.mainContext
-    let dataSource = UserRepositoryImpl(networkService: networkService, modelContext: modelContext)
-    let viewModel = GithubViewModel(dataSource: dataSource)
+    let repository = UserRepositoryImpl(networkService: networkService, modelContext: modelContext)
+    let viewModel = GithubViewModel(repository: repository)
     return ContentView(navigationPath: $navigationPath).environment(viewModel)
 }

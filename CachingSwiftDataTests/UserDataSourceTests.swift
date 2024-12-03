@@ -11,26 +11,26 @@ import XCTest
 final class UserDataSourceTests: XCTestCase {
     var mockModelContext: MockModelContext!
     var mockNetworkService: MockNetworkService!
-    var userDataSource: UserRepositoryImpl!
+    var repository: UserRepositoryImpl!
     
     override func setUp() {
         super.setUp()
         mockModelContext = MockModelContext()
         mockNetworkService = MockNetworkService()
-        userDataSource = UserRepositoryImpl(networkService: mockNetworkService, modelContext: mockModelContext)
+        repository = UserRepositoryImpl(networkService: mockNetworkService, modelContext: mockModelContext)
     }
     
     override func tearDown() {
         mockModelContext = nil
         mockNetworkService = nil
-        userDataSource = nil
+        repository = nil
         super.tearDown()
     }
     
     func testFetchUsers() throws {
         mockModelContext.storage = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
         
-        let users = userDataSource.fetch()
+        let users = repository.fetch()
         
         XCTAssertEqual(users.count, 1)
         XCTAssertEqual(users.first?.login, "testUser")
@@ -40,7 +40,7 @@ final class UserDataSourceTests: XCTestCase {
     func testFetchEmptyUsers() throws {
         mockModelContext.storage = []
         
-        let users = userDataSource.fetch()
+        let users = repository.fetch()
         
         XCTAssertTrue(users.isEmpty)
     }
@@ -48,8 +48,8 @@ final class UserDataSourceTests: XCTestCase {
     func testAppend() throws {
         let userEntity = UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")
         
-        try userDataSource.append(user: userEntity)
-        let users = userDataSource.fetch()
+        try repository.append(user: userEntity)
+        let users = repository.fetch()
         
         XCTAssertEqual(users.count, 1)
         XCTAssertEqual(users.first?.login, "testUser")
@@ -59,8 +59,8 @@ final class UserDataSourceTests: XCTestCase {
     func testDeleteAll() throws {
         mockModelContext.storage = [UserEntity(id: 1, login: "testUser", avatarUrl: "https://example.com/avatar.png")]
         
-        try userDataSource.deleteAll()
-        let users = userDataSource.fetch()
+        try repository.deleteAll()
+        let users = repository.fetch()
         
         XCTAssertTrue(users.isEmpty)
     }
@@ -70,8 +70,8 @@ final class UserDataSourceTests: XCTestCase {
         let mockData = try JSONEncoder().encode([mockUserDTO])
         mockNetworkService.mockData = mockData
         
-        try await userDataSource.update()
-        let users = userDataSource.fetch()
+        try await repository.update()
+        let users = repository.fetch()
         
         XCTAssertEqual(users.count, 1)
         XCTAssertEqual(users.first?.login, "testUser")
@@ -81,7 +81,7 @@ final class UserDataSourceTests: XCTestCase {
     func testUpdateNetworkFailure() async {
         mockNetworkService.mockError = NSError(domain: "TestError", code: 400, userInfo: [NSLocalizedDescriptionKey: "Bad Request"])
         do {
-            try await userDataSource.update()
+            try await repository.update()
         } catch {
             XCTAssertEqual(error.localizedDescription, "Bad Request")
         }
@@ -90,7 +90,7 @@ final class UserDataSourceTests: XCTestCase {
     func testUpdateDecodingError() async {
         mockNetworkService.mockData = Data("Invalid JSON".utf8) // Invalid JSON
         do {
-            try await userDataSource.update()
+            try await repository.update()
         } catch {
             XCTAssertTrue(error is DecodingError)
         }

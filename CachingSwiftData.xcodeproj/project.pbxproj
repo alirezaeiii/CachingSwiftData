@@ -31,7 +31,7 @@
 		41D0DD6E2CFD27B7002793E8 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD6D2CFD27B7002793E8 /* MockNetworkService.swift */; };
 		41D0DD702CFD2A53002793E8 /* MockModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD6F2CFD2A53002793E8 /* MockModelContext.swift */; };
 		41D0DD722CFD3BBF002793E8 /* ModelContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */; };
-		41D0DD762CFD4FE3002793E8 /* MockUserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD752CFD4FE3002793E8 /* MockUserDataSource.swift */; };
+		41D0DD762CFD4FE3002793E8 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD752CFD4FE3002793E8 /* MockUserRepository.swift */; };
 		41D0DD782CFD50AE002793E8 /* GithubViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D0DD772CFD50AE002793E8 /* GithubViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +72,7 @@
 		41D0DD6D2CFD27B7002793E8 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		41D0DD6F2CFD2A53002793E8 /* MockModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModelContext.swift; sourceTree = "<group>"; };
 		41D0DD712CFD3BBF002793E8 /* ModelContextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContextProtocol.swift; sourceTree = "<group>"; };
-		41D0DD752CFD4FE3002793E8 /* MockUserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDataSource.swift; sourceTree = "<group>"; };
+		41D0DD752CFD4FE3002793E8 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		41D0DD772CFD50AE002793E8 /* GithubViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,7 +210,7 @@
 			children = (
 				41D0DD6D2CFD27B7002793E8 /* MockNetworkService.swift */,
 				41D0DD6F2CFD2A53002793E8 /* MockModelContext.swift */,
-				41D0DD752CFD4FE3002793E8 /* MockUserDataSource.swift */,
+				41D0DD752CFD4FE3002793E8 /* MockUserRepository.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 				41D0DD702CFD2A53002793E8 /* MockModelContext.swift in Sources */,
 				41D0DD782CFD50AE002793E8 /* GithubViewModelTests.swift in Sources */,
 				41D0DD662CFD1A38002793E8 /* UserDataSourceTests.swift in Sources */,
-				41D0DD762CFD4FE3002793E8 /* MockUserDataSource.swift in Sources */,
+				41D0DD762CFD4FE3002793E8 /* MockUserRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
