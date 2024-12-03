@@ -29,11 +29,11 @@ struct CachingSwiftDataApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $navigationPaths) {
-                ContentView(viewModel: viewModel, navigationPath: $navigationPaths)
+                ContentView(navigationPath: $navigationPaths).environment(viewModel)
                     .navigationDestination(for: NavigationPath.self) { path in
                         switch path {
                         case .list:
-                            ContentView(viewModel: viewModel, navigationPath: $navigationPaths)
+                            ContentView(navigationPath: $navigationPaths).environment(viewModel)
                         case .detail(user:  let user):
                             DetailView(user: user)
                         }

@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel: GithubViewModel
+    @Environment(GithubViewModel.self) private var viewModel
     @Binding var navigationPath: [NavigationPath]
     
     var body: some View {
@@ -45,5 +45,5 @@ struct ContentView: View {
     let modelContext = modelContainer.mainContext
     let dataSource = UserRepositoryImpl(networkService: networkService, modelContext: modelContext)
     let viewModel = GithubViewModel(dataSource: dataSource)
-    return ContentView(viewModel: viewModel, navigationPath: $navigationPath)
+    return ContentView(navigationPath: $navigationPath).environment(viewModel)
 }

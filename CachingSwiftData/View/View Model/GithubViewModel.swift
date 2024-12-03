@@ -7,11 +7,13 @@
 
 import Foundation
 
-class GithubViewModel: ObservableObject {
+@Observable
+class GithubViewModel {
+    @ObservationIgnored
     private let dataSource: UserRepository
     
-    @Published var viewState: ViewState = .loading
-    @Published var users: [UserEntity] = []
+    var viewState: ViewState = .loading
+    var users: [UserEntity] = []
     
     init(dataSource: UserRepository) {
         self.dataSource = dataSource
