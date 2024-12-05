@@ -12,6 +12,7 @@ protocol UserRepository {
     func append(user: UserEntity) throws
     func fetch() -> [UserEntity]
     func update() async throws
+    func deleteAll() throws
 }
 
 class UserRepositoryImpl: UserRepository {
