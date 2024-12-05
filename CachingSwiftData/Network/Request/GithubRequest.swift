@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol RequestProtocol {
+    var httpMethod: HTTPMethod { get }
+    var url: URL? { get }
+    func request() throws -> URLRequest
+}
+
 struct GithubRequest: RequestProtocol {
     let httpMethod: HTTPMethod = .GET
     let url: URL?
