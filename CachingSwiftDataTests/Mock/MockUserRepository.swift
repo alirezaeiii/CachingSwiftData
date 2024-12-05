@@ -20,6 +20,10 @@ class MockUserRepository: UserRepository {
         return mockUsers
     }
     
+    func deleteAll() {
+        mockUsers.removeAll()
+    }
+    
     func update() async throws {
         if shouldThrowError {
             throw NSError(domain: "MockError", code: 1, userInfo: nil)

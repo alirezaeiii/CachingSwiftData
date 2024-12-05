@@ -11,7 +11,7 @@ import XCTest
 final class UserRepositoryTests: XCTestCase {
     var mockModelContext: MockModelContext!
     var mockNetworkService: MockNetworkService!
-    var repository: UserRepositoryImpl!
+    var repository: UserRepository!
     
     override func setUp() {
         super.setUp()
