@@ -8,7 +8,7 @@
 import XCTest
 @testable import CachingSwiftData
 
-final class UserDataSourceTests: XCTestCase {
+final class UserRepositoryTests: XCTestCase {
     var mockModelContext: MockModelContext!
     var mockNetworkService: MockNetworkService!
     var repository: UserRepositoryImpl!
