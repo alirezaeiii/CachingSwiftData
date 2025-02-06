@@ -17,7 +17,9 @@ struct ContentView: View {
         AsyncContentView(viewState: viewModel.viewState) {
             List {
                 ForEach(viewModel.users) { user in
-                    UserRow(user: user, navigationPath: $navigationPath)
+                    UserRow(user: user).onTapGesture {
+                        navigationPath.append(.detail(user: user))
+                    }
                 }
             }.navigationTitle("Following")
                 .navigationBarTitleDisplayMode(.inline)
@@ -31,10 +33,6 @@ struct ContentView: View {
         }.task {
             await viewModel.load()
         }
-    }
-    
-    private struct Constants {
-        static let gridItemSize: Double = 180
     }
 }
 

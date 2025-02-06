@@ -9,7 +9,6 @@ import SwiftUI
 
 struct UserRow: View {
     let user: UserEntity
-    @Binding var navigationPath: [NavigationPath]
     
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: Constants.cornerRadius)
@@ -27,8 +26,6 @@ struct UserRow: View {
             Text(user.login)
                 .font(.title3)
             Spacer()
-        }.onTapGesture {
-            navigationPath.append(.detail(user: user))
         }
     }
     
@@ -39,11 +36,10 @@ struct UserRow: View {
 }
 
 #Preview {
-    @State var navigationPath = [NavigationPath]()
     return ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         VStack {
-            UserRow(user: UserEntity.user, navigationPath: $navigationPath)
-            UserRow(user: UserEntity.user, navigationPath: $navigationPath)
+            UserRow(user: UserEntity.user)
+            UserRow(user: UserEntity.user)
         }
         .padding()
         .frame(minWidth: 300, alignment: .leading)
